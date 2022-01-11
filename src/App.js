@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 import CounterFeedback from "./components/CounterFeedback";
-// import StatisticsFeedback from './components/StatisticsFeedback';
+import Statistics from "./components/StatisticsFeedback";
 
 class App extends Component {
   static defaultProps = { initialTotal: 0 };
@@ -37,30 +37,36 @@ class App extends Component {
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
     const { initialTotal } = this.props;
-    const total = initialTotal + good + neutral + bad;
-    return total;
+    return initialTotal + good + neutral + bad;
   };
-  // countPositiveFeedbackPercentage()
+  countPositiveFeedbackPercentage = () => {
+    const { good } = this.state;
+    const total = this.countTotalFeedback();
+    return total ? Math.round((good / total) * 100) + "%" : 0;
+  };
   render() {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
-
+    const positivePercentage = this.countPositiveFeedbackPercentage();
     return (
       <div>
         <h1>Feedback</h1>
+
         <h2>Please leave feedback</h2>
         <CounterFeedback
           onGood={this.clickOnGood}
           onNeutral={this.clickOnNeutral}
           onBad={this.clickOnBad}
         />
+
         <h2>Statistics</h2>
-        <ul>
-          <li>Good: {good}</li>
-          <li>Neutral: {neutral}</li>
-          <li>Bad: {bad}</li>
-          <li>Total: {total}</li>
-        </ul>
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={total}
+          positivePercentage={positivePercentage}
+        ></Statistics>
       </div>
     );
   }

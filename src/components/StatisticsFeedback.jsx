@@ -1,14 +1,13 @@
-// import React, { Component } from 'react';
-
-// class StatisticsFeedback extends Component {
-//   render() {
-//     return (
-//       <ul>
-//         <li>Good: {this.state.good}</li>
-//         <li>Neutral: {this.state.neutral}</li>
-//         <li>Bad: {this.state.bad}</li>
-//       </ul>
-//     );
-//   }
-// }
-// export default StatisticsFeedback;
+import React from 'react';
+const Statistics = ({ good, neutral, bad, total, positiveFeedback }) => {
+  return (
+    <ul>
+      <li>Good: {good}</li>
+      <li>Neutral: {neutral}</li>
+      <li>Bad: {bad}</li>
+      <li>Total: {total}</li>
+      <li>Positive feedback: {positiveFeedback}</li>
+    </ul>
+  );
+};
+export default Statistics;
