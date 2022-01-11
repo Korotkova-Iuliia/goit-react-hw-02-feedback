@@ -3,9 +3,9 @@ import "./App.css";
 
 import FeedbackOptions from "./components/FeedbackOptions";
 import Statistics from "./components/StatisticsFeedback";
+import Section from "./components/Section";
 
 class App extends Component {
-  static defaultProps = { initialTotal: 0 };
   state = {
     good: 0,
     neutral: 0,
@@ -34,8 +34,8 @@ class App extends Component {
   };
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
-    const { initialTotal } = this.props;
-    return initialTotal + good + neutral + bad;
+
+    return good + neutral + bad;
   };
   countPositiveFeedbackPercentage = () => {
     const { good } = this.state;
@@ -47,31 +47,27 @@ class App extends Component {
     const total = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage();
     return (
-      <div>
+      <>
         <h1>Feedback</h1>
-
-        <h2>Please leave feedback</h2>
-        {/* <FeedbackOptions options={} onLeaveFeedback={}></FeedbackOptions> */}
-        <FeedbackOptions
-          onGood={this.clickOnGood}
-          onNeutral={this.clickOnNeutral}
-          onBad={this.clickOnBad}
-        />
-
-        <h2>Statistics</h2>
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positivePercentage={positivePercentage}
-        ></Statistics>
-      </div>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            onGood={this.clickOnGood}
+            onNeutral={this.clickOnNeutral}
+            onBad={this.clickOnBad}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positivePercentage={positivePercentage}
+          ></Statistics>
+        </Section>
+      </>
     );
   }
 }
 
 export default App;
-// TitleFeedback;
-// titleStatistics;
-// className = 'App';
