@@ -10,22 +10,20 @@ class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    total: this.props.initialTotal,
   };
 
   clickOnGood = () => {
     this.setState((prevState) => {
       return {
         good: prevState.good + 1,
-        total: prevState.total + 1,
       };
     });
   };
+
   clickOnNeutral = () => {
     this.setState((prevState) => {
       return {
         neutral: prevState.neutral + 1,
-        total: prevState.total + 1,
       };
     });
   };
@@ -33,26 +31,20 @@ class App extends Component {
     this.setState((prevState) => {
       return {
         bad: prevState.bad + 1,
-        total: prevState.total + 1,
       };
     });
   };
   countTotalFeedback = () => {
-    const total = this.initialTotal;
-    console.log(total);
-    console.log(this.state.good);
-    const totalGood = this.state.good;
-    console.log(totalGood);
-
-    this.setState((prevState) => {
-      return {
-        total: prevState.bad,
-      };
-    });
+    const { good, neutral, bad } = this.state;
+    const { initialTotal } = this.props;
+    const total = initialTotal + good + neutral + bad;
+    return total;
   };
-
   // countPositiveFeedbackPercentage()
   render() {
+    const { good, neutral, bad } = this.state;
+    const total = this.countTotalFeedback();
+
     return (
       <div>
         <h1>Feedback</h1>
@@ -64,10 +56,10 @@ class App extends Component {
         />
         <h2>Statistics</h2>
         <ul>
-          <li>Good: {this.state.good}</li>
-          <li>Neutral: {this.state.neutral}</li>
-          <li>Bad: {this.state.bad}</li>
-          <li>Total: {this.state.total}</li>
+          <li>Good: {good}</li>
+          <li>Neutral: {neutral}</li>
+          <li>Bad: {bad}</li>
+          <li>Total: {total}</li>
         </ul>
       </div>
     );
