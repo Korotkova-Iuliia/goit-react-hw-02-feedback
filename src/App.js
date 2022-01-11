@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import CounterFeedback from "./components/CounterFeedback";
+import FeedbackOptions from "./components/FeedbackOptions";
 import Statistics from "./components/StatisticsFeedback";
 
 class App extends Component {
@@ -11,26 +11,24 @@ class App extends Component {
     neutral: 0,
     bad: 0,
   };
-
   clickOnGood = () => {
-    this.setState((prevState) => {
+    this.setState(({ good }) => {
       return {
-        good: prevState.good + 1,
+        good: good + 1,
       };
     });
   };
-
   clickOnNeutral = () => {
-    this.setState((prevState) => {
+    this.setState(({ neutral }) => {
       return {
-        neutral: prevState.neutral + 1,
+        neutral: neutral + 1,
       };
     });
   };
   clickOnBad = () => {
-    this.setState((prevState) => {
+    this.setState(({ bad }) => {
       return {
-        bad: prevState.bad + 1,
+        bad: bad + 1,
       };
     });
   };
@@ -53,7 +51,8 @@ class App extends Component {
         <h1>Feedback</h1>
 
         <h2>Please leave feedback</h2>
-        <CounterFeedback
+        {/* <FeedbackOptions options={} onLeaveFeedback={}></FeedbackOptions> */}
+        <FeedbackOptions
           onGood={this.clickOnGood}
           onNeutral={this.clickOnNeutral}
           onBad={this.clickOnBad}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CounterFeedback = ({ onGood, onNeutral, onBad }) => {
+const FeedbackOptions = ({ onGood, onNeutral, onBad }) => {
   return (
     <div>
       <button type="button" onClick={onGood}>
@@ -15,4 +15,4 @@ const CounterFeedback = ({ onGood, onNeutral, onBad }) => {
     </div>
   );
 };
-export default CounterFeedback;
+export default FeedbackOptions;
