@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import "./App.css";
-
-import FeedbackOptions from "./components/FeedbackOptions";
-import Statistics from "./components/StatisticsFeedback";
-import Section from "./components/Section";
+import { Container } from "./App.stiled";
+import FeedbackOptions from "./components/FeedbackOptions/FeedbackOptions";
+import TitleMain from "./components/TitleMain/TitleMain";
+import Statistics from "./components/Statistics/Statistics";
+import Section from "./components/Section/Section";
+import Notification from "./components/Notification/Notification";
 
 class App extends Component {
   state = {
@@ -33,9 +34,9 @@ class App extends Component {
     });
   };
   countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state;
-
-    return good + neutral + bad;
+    const args = Object.values(this.state);
+    const reducer = (prevStateValue, stateValue) => prevStateValue + stateValue;
+    return args.reduce(reducer);
   };
   countPositiveFeedbackPercentage = () => {
     const { good } = this.state;
@@ -47,8 +48,8 @@ class App extends Component {
     const total = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage();
     return (
-      <>
-        <h1>Feedback</h1>
+      <Container>
+        <TitleMain title="Feedback" />
         <Section title="Please leave feedback">
           <FeedbackOptions
             onGood={this.clickOnGood}
@@ -57,15 +58,19 @@ class App extends Component {
           />
         </Section>
         <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={total}
-            positivePercentage={positivePercentage}
-          ></Statistics>
+          {total === 0 ? (
+            <Notification message="There is no feedback" />
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercentage}
+            ></Statistics>
+          )}
         </Section>
-      </>
+      </Container>
     );
   }
 }
