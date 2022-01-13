@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { GlobalStyle } from "./components/GlobalStyle";
 import { Container } from "./App.stiled";
 import FeedbackOptions from "./components/FeedbackOptions/FeedbackOptions";
 import TitleMain from "./components/TitleMain/TitleMain";
@@ -49,6 +50,7 @@ class App extends Component {
     const positivePercentage = this.countPositiveFeedbackPercentage();
     return (
       <Container>
+        <GlobalStyle />
         <TitleMain title="Feedback" />
         <Section title="Please leave feedback">
           <FeedbackOptions
@@ -76,3 +78,4 @@ class App extends Component {
 }
 
 export default App;
+// https://youtu.be/2tPxoJxaCes?t=5692
