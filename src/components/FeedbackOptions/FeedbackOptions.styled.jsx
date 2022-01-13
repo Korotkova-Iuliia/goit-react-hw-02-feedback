@@ -1,21 +1,22 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 export const Button = styled.button`
   font-size: 1em;
   padding: 0.25em 1em;
   border-radius: 3px;
-  color: green;
-  border: 2px solid green;
-  &:nth-child(odd) {
+  &:nth-child(2) {
+    color: green;
+    border: 2px solid green;
+  }
+  &:nth-child(3) {
     color: orange;
     border: 2px solid orange;
     margin-left: 2em;
     margin-right: 2em;
   }
-  &:nth-last-child(1) {
+  &:nth-child(4) {
     color: red;
     border: 2px solid red;
   }
-
   &:hover {
     cursor: pointer;
     transform: scale(1.25);
@@ -28,26 +29,3 @@ export const Button = styled.button`
     }
   }
 `;
-
-// export const GoodButton = styled(Button)`
-//   color: green;
-//   border: 2px solid green;
-// `;
-// export const NeutralButton = styled(Button)`
-//   color: orange;
-//   border: 2px solid orange;
-//   margin-left: 2em;
-//   margin-right: 2em;
-// `;
-// export const BadButton = styled(Button)`
-//   color: red;
-//   border: 2px solid red;
-// `;
-// ${(options) =>
-//     {options.map((key) =>
-//         key
-//       )} &&
-//     css`
-//       background: palevioletred;
-//       color: white;
-//     `};

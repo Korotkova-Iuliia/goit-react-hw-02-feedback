@@ -6,7 +6,6 @@ import TitleMain from "./components/TitleMain/TitleMain";
 import Statistics from "./components/Statistics/Statistics";
 import Section from "./components/Section/Section";
 import Notification from "./components/Notification/Notification";
-
 class App extends Component {
   state = {
     good: 0,
@@ -18,27 +17,6 @@ class App extends Component {
       return { [key]: prevState[key] + 1 };
     });
   };
-  // clickOnGood = () => {
-  //   this.setState(({ good }) => {
-  //     return {
-  //       good: good + 1,
-  //     };
-  //   });
-  // };
-  // clickOnNeutral = () => {
-  //   this.setState(({ neutral }) => {
-  //     return {
-  //       neutral: neutral + 1,
-  //     };
-  //   });
-  // };
-  // clickOnBad = () => {
-  //   this.setState(({ bad }) => {
-  //     return {
-  //       bad: bad + 1,
-  //     };
-  //   });
-  // };
   countTotalFeedback = () => {
     const args = Object.values(this.state);
     const reducer = (prevStateValue, stateValue) => prevStateValue + stateValue;
@@ -80,13 +58,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
-// https://youtu.be/2tPxoJxaCes?t=5692
-//  {
-//    /* <FeedbackOptions
-//         onGood={this.clickOnGood}
-//         onNeutral={this.clickOnNeutral}
-//         onBad={this.clickOnBad}
-//       /> */
-//  }
